@@ -282,7 +282,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
-  pg (~> 1.4)
+  pg
   puma (>= 5.0)
   rails (~> 7.1.0)
   rubocop
