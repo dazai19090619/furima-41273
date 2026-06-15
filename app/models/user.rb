@@ -9,12 +9,17 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :nickname
     validates :birth_date
-    validates :first_name, format: { with: FULL_WIDTH_REGEX }
-    validates :last_name, format: { with: FULL_WIDTH_REGEX }
-    validates :first_name_kana, format: { with: KATAKANA_REGEX }
-    validates :last_name_kana, format: { with: KATAKANA_REGEX }
+    validates :first_name
+    validates :last_name
+    validates :first_name_kana
+    validates :last_name_kana
   end
 
+  validates :first_name, format: { with: FULL_WIDTH_REGEX }
+  validates :last_name, format: { with: FULL_WIDTH_REGEX }
+  validates :first_name_kana, format: { with: KATAKANA_REGEX }
+  validates :last_name_kana, format: { with: KATAKANA_REGEX }
+
   validates :password,
-            format: { with: PASSWORD_REGEX, message: "は半角英数字混合で入力してください" }
+            format: { with: PASSWORD_REGEX, message: 'は半角英数字混合で入力してください' }
 end

@@ -227,3 +227,27 @@
 .inc {
   font-size: 13px;
 }
+
+/* ログアウトボタンをリンク風にする */
+.logout {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #333;              /* 好きな色OK */
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.logout input {
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+
+.logout input:hover {
+  text-decoration: underline;
+}
