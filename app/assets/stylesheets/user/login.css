@@ -1,7 +1,6 @@
 .login-btn {
   width: 50%;
-  margin: 0 auto;
-  margin-top: 50px;
+  margin: 50px auto 0;
 }
 
 .login-red-btn {
@@ -14,7 +13,18 @@
   cursor: pointer;
 }
 
-.login-flash-message {
+.error-alert {
+  margin-bottom: 20px;
   text-align: center;
+}
+
+.error-alert ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.error-alert li {
   color: red;
+  font-size: 14px;
 }

@@ -9,7 +9,15 @@
     </h1>
   </div>
 
-  <%= render 'shared/error_messages', model: f.object %>
+  <%# ★追加ここから %>
+  <% if flash[:alert] %>
+    <div class="error-alert">
+      <ul>
+        <li><%= flash[:alert] %></li>
+      </ul>
+    </div>
+  <% end %>
+  <%# ★ここまで %>
 
   <div class="form-group">
     <div class='form-text-wrap'>
