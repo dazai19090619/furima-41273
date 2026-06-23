@@ -1,0 +1,30 @@
+.login-btn {
+  width: 50%;
+  margin: 50px auto 0;
+}
+
+.login-red-btn {
+  width: 100%;
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.error-alert {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-alert ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.error-alert li {
+  color: red;
+  font-size: 14px;
+}
