@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: Nickname
+        email: Email
+        password: Password
+        first_name: First name
+        last_name: Last name
+        first_name_kana: First name kana
+        last_name_kana: Last name kana
+        birth_date: Birth date
+
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: "を入力してください"
+      taken: "はすでに存在します"
+      invalid: "は不正な値です"
+      too_short: "は%{count}文字以上で入力してください"
+      confirmation: "と%{attribute}の入力が一致しません"
+
+  devise:
+    failure:
+      invalid: "メールアドレスまたはパスワードが違います"
+      user:
+        invalid: "メールアドレスまたはパスワードが違います"
+
+  date:
+    order:
+      - :year
+      - :month
+      - :day
