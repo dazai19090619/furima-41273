@@ -7,6 +7,7 @@
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
 
+    <%= render 'shared/error_messages', model: f.object %>
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     <%# render 'shared/error_messages', model: f.object %>
 
@@ -144,17 +145,6 @@
       <%= f.submit "出品する" ,class:"sell-btn" %>
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
-
-        <%# ★ここに移動！！！ %>
-    <% if @item.errors.any? %>
-      <div class="error-message">
-        <ul>
-          <% @item.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
 
   <% end %>
 
