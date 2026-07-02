@@ -9,11 +9,16 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :delivery_time
 
-  validates :image, :name, :description, presence: true
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :description, presence: true
 
   validates :category_id, :status_id, :shipping_fee_id,
             :prefecture_id, :delivery_time_id,
-            numericality: { other_than: 1 }
+            numericality: {
+              other_than: 1,
+              message: 'を入力してください'
+            }
 
   validates :price,
             presence: true,
@@ -21,6 +26,6 @@ class Item < ApplicationRecord
               only_integer: true,
               greater_than_or_equal_to: 300,
               less_than_or_equal_to: 9_999_999,
-              message: "は300以上9999999以下で入力してください"
+              message: 'は300以上9999999以下で入力してください'
             }
 end

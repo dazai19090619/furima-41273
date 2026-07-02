@@ -6,33 +6,31 @@ class User < ApplicationRecord
   FULL_WIDTH_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
   KATAKANA_REGEX = /\A[ァ-ヶー]+\z/
 
-  validates :nickname, :birth_date,
-            :first_name, :last_name,
-            :first_name_kana, :last_name_kana,
-            presence: true
+  validates :nickname, presence: { message: 'を入力してください' }
+  validates :birth_date, presence: { message: 'を入力してください' }
+
+  validates :first_name, :last_name,
+            presence: { message: 'を入力してください' },
+            format: { with: FULL_WIDTH_REGEX, message: 'は不正な値です' }
+
+  validates :first_name_kana, :last_name_kana,
+            presence: { message: 'を入力してください' },
+            format: { with: KATAKANA_REGEX, message: 'は不正な値です' }
 
   validates :email,
-            presence: true,
-            uniqueness: true,
-            format: { with: /.+@.+/ }
+            presence: { message: 'を入力してください' },
+            uniqueness: { message: 'はすでに存在します' },
+            format: { with: /.+@.+/, message: 'は不正な値です' }
 
   validates :password,
-            presence: true,
+            presence: { message: 'を入力してください' },
             format: {
               with: PASSWORD_REGEX,
-              message: "は半角英数字混合で入力してください"
+              message: 'は半角英数字混合で入力してください'
             },
             length: {
               minimum: 6,
-              message: "は6文字以上で入力してください"
+              message: 'は6文字以上で入力してください'
             },
-            confirmation: true
-
-  validates :first_name, :last_name,
-            format: { with: FULL_WIDTH_REGEX },
-            allow_blank: true
-
-  validates :first_name_kana, :last_name_kana,
-            format: { with: KATAKANA_REGEX },
-            allow_blank: true
+            confirmation: { message: 'とPasswordの入力が一致しません' }
 end
