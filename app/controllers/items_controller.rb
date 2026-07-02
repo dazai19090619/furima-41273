@@ -14,13 +14,13 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user = current_user
 
-     logger.debug "current_user: #{current_user.inspect}"
+    logger.debug "current_user: #{current_user.inspect}"
 
     if @item.save
       redirect_to root_path
     else
       logger.debug @item.errors.full_messages
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

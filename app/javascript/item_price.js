@@ -4,16 +4,16 @@ document.addEventListener("turbo:load", () => {
   if (!priceInput) return;
 
   priceInput.addEventListener("input", () => {
-    const price = priceInput.value;
+    const price = Number(priceInput.value);
 
-    if (price === "") {
+    if (!price) {
       document.getElementById("add-tax-price").innerHTML = "";
       document.getElementById("profit").innerHTML = "";
       return;
     }
 
     const tax = Math.floor(price * 0.1);
-    const profit = Math.floor(price - tax);
+    const profit = price - tax;
 
     document.getElementById("add-tax-price").innerHTML = tax;
     document.getElementById("profit").innerHTML = profit;
