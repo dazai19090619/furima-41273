@@ -1,4 +1,4 @@
-ja:
+en:
   activerecord:
     attributes:
       item:
@@ -24,13 +24,19 @@ ja:
         birth_date: Birth date
 
   errors:
-    format: "%{attribute}%{message}" 
+    format: "%{attribute} %{message}"
     messages:
-      blank: "を入力してください"
-      taken: "はすでに存在します"
-      invalid: "は不正な値です"
-      too_short: "%{count}文字以上で入力してください"
-      confirmation: "とPasswordの入力が一致しません"
-      greater_than_or_equal_to: "%{count}以上で入力してください"
-      less_than_or_equal_to: "%{count}以下で入力してください"
-      other_than: "を入力してください"
+      blank: "can't be blank"
+      taken: "has already been taken"
+      invalid: "is invalid"
+      too_short: "is too short (minimum is %{count})"
+      confirmation: "doesn't match Password"
+      greater_than_or_equal_to: "must be greater than or equal to %{count}"
+      less_than_or_equal_to: "must be less than or equal to %{count}"
+      other_than: "is invalid"
+
+  date:
+    order:
+      - year
+      - month
+      - day

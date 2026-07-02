@@ -308,4 +308,32 @@ a {
   font-size: 2vh;
 }
 
+
+.purchase-btn {
+  width: 120px;
+  background: #3ccace;
+  text-align: center;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  padding: 15px;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.purchase-btn-text {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.purchase-btn-icon {
+  width: 40px;
+  height: 40px;
+}
 /* //商品一覧 */
