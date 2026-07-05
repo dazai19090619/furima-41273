@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @items = Item.all
   end
 
   def new
@@ -13,12 +12,9 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user = current_user
 
-    logger.debug "current_user: #{current_user.inspect}"
-
     if @item.save
       redirect_to root_path
     else
-      logger.debug @item.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end

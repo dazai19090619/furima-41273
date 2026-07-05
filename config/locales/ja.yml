@@ -11,6 +11,7 @@ ja:
         prefecture_id: Prefecture
         delivery_time_id: Delivery time
         price: Price
+        user: User
 
       user:
         nickname: Nickname
@@ -23,6 +24,13 @@ ja:
         last_name_kana: Last name kana
         birth_date: Birth date
 
+    errors:
+      models:
+        item:
+          attributes:
+            user:
+              required: "を入力してください"
+
   errors:
     format: "%{attribute}%{message}"
 
@@ -33,6 +41,5 @@ ja:
       too_short: "は%{count}文字以上で入力してください"
       confirmation: "%{attribute}とPasswordの入力が一致しません"
       other_than: "を入力してください"
-
       greater_than_or_equal_to: "は%{count}以上で入力してください"
       less_than_or_equal_to: "は%{count}以下で入力してください"

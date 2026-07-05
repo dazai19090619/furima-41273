@@ -120,52 +120,54 @@
   <%# /FURIMAの特徴 %>
 
   <%# 商品一覧 %>
- <div class='item-contents'>
+  <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
-    <div class="subtitle">
+    <div class="subtitle" >
       新規投稿商品
     </div>
-
     <ul class='item-lists'>
-      <% if @items.present? %>
-        <% @items.each do |item| %>
-          <li class='list'>
-            <%= link_to "#" do %>
-              <div class='item-img-content'>
-                <%= image_tag url_for(item.image), class: "item-img" if item.image.attached? %>
-              </div>
+  <% if @items.present? %>
+    <% @items.each do |item| %>
+      <li class='list'>
+  <%= link_to item_path(item) do %>
 
-              <div class='item-info'>
-                <h3 class='item-name'>
-                  <%= item.name %>
-                </h3>
-                <div class='item-price'>
-                  <span><%= item.price %>円</span>
-                </div>
-              </div>
-            <% end %>
-          </li>
-        <% end %>
+    <div class='item-img-content'>
+      <% if item.image.attached? %>
+  <%= image_tag item.image, class: "item-img" %>
+<% end %>
+    </div>
 
-      <% else %>
-        <li class='list'>
-          <%= link_to '#' do %>
-            <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
-            <div class='item-info'>
-              <h3 class='item-name'>
-                商品を出品してね！
-              </h3>
-            </div>
-          <% end %>
-        </li>
+    <div class='item-info'>
+      <h3 class='item-name'>
+        <%= item.name %>
+      </h3>
+      <div class='item-price'>
+        <span><%= item.price %>円</span>
+      </div>
+    </div>
+
+  <% end %>
+</li>
+    <% end %>
+  <% else %>
+    <li class='list'>
+      <%= link_to '#' do %>
+        <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            商品を出品してね！
+          </h3>
+        </div>
       <% end %>
-    </ul>
+    </li>
+  <% end %>
+</ul>
 
   </div>
-
-  <%= link_to new_item_path, class: 'purchase-btn' do %>
+  <%# /商品一覧 %>
+</div>
+<%= link_to new_item_path, class: 'purchase-btn' do %>
   <span class='purchase-btn-text'>出品する</span>
-  <%= image_tag 'icon_camera.png', class: "purchase-btn-icon" %>
+  <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
-
 <%= render "shared/footer" %>
