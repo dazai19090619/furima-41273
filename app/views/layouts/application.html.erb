@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Furima41273</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +11,13 @@
   </head>
 
   <body>
+
+    <% if controller_name == "items" && action_name == "index" %>
+    <%= render "shared/header" %>
+    <% else %>
+    <% end %>
+
     <%= yield %>
+
   </body>
 </html>

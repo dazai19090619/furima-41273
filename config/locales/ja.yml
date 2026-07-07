@@ -1,33 +1,45 @@
 ja:
   activerecord:
     attributes:
+      item:
+        image: Image
+        name: Name
+        description: Description
+        category_id: Category
+        status_id: Status
+        shipping_fee_id: Shipping fee
+        prefecture_id: Prefecture
+        delivery_time_id: Delivery time
+        price: Price
+        user: User
+
       user:
         nickname: Nickname
         email: Email
         password: Password
+        password_confirmation: Password confirmation
         first_name: First name
         last_name: Last name
         first_name_kana: First name kana
         last_name_kana: Last name kana
         birth_date: Birth date
 
+    errors:
+      models:
+        item:
+          attributes:
+            user:
+              required: "を入力してください"
+
   errors:
     format: "%{attribute}%{message}"
+
     messages:
       blank: "を入力してください"
       taken: "はすでに存在します"
       invalid: "は不正な値です"
       too_short: "は%{count}文字以上で入力してください"
-      confirmation: "と%{attribute}の入力が一致しません"
-
-  devise:
-    failure:
-      invalid: "メールアドレスまたはパスワードが違います"
-      user:
-        invalid: "メールアドレスまたはパスワードが違います"
-
-  date:
-    order:
-      - :year
-      - :month
-      - :day
+      confirmation: "%{attribute}とPasswordの入力が一致しません"
+      other_than: "を入力してください"
+      greater_than_or_equal_to: "は%{count}以上で入力してください"
+      less_than_or_equal_to: "は%{count}以下で入力してください"

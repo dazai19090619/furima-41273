@@ -27,7 +27,7 @@
   margin-bottom: 5px;
 }
 
-.search-form>.input-box {
+.search-form > .input-box {
   width: 100%;
   height: 5vh;
   padding-left: 10px;
@@ -57,7 +57,6 @@
 .lists-left {
   display: flex;
   min-width: 200px;
-
 }
 
 .category-list {
@@ -77,14 +76,12 @@
   align-items: flex-end;
 }
 
-
 .user-nickname {
   text-decoration: none;
   margin-right: 3vw;
   color: #333333;
   font-weight: bold;
 }
-
 
 .logout {
   text-decoration: none;
