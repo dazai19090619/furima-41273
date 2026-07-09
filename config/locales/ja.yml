@@ -43,3 +43,9 @@ ja:
       other_than: "を入力してください"
       greater_than_or_equal_to: "は%{count}以上で入力してください"
       less_than_or_equal_to: "は%{count}以下で入力してください"
+
+  date:
+    order:
+      - :year
+      - :month
+      - :day
