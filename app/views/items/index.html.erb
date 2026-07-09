@@ -126,21 +126,20 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-      <% if @items.present? %>
-       <% @items.each do |item| %>
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <li class='list'>
-        <%= link_to item_path(item) do %>
+       <% if @items.any? %>
+  <% @items.each do |item| %>
+    <li class='list'>
+      <%= link_to "#" do %>
         <div class='item-img-content'>
           <%= image_tag url_for(item.image), class: "item-img" if item.image.attached? %>
 
           <% if false %>
-             <div class='sold-out'>
-               <span>Sold Out!!</span>
-             </div>
-         <% end %>
-
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+          <% end %>
         </div>
+
         <div class='item-info'>
           <h3 class='item-name'>
             <%= item.name %>
@@ -153,34 +152,29 @@
             </div>
           </div>
         </div>
-        <% end %>
-        </li>
-    <% end %>
-  <% else %>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
+      <% end %>
+    </li>
+  <% end %>
 
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
-      <li class='list'>
-        <%= link_to '#' do %>
-        <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            商品を出品してね！
-          </h3>
-          <div class='item-price'>
-            <span>99999999円<br>(税込み)</span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
-            </div>
+<% else %>
+  <li class='list'>
+    <%= link_to '#' do %>
+      <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+      <div class='item-info'>
+        <h3 class='item-name'>
+          商品を出品してね！
+        </h3>
+        <div class='item-price'>
+          <span>99999999円<br>(税込み)</span>
+          <div class='star-btn'>
+            <%= image_tag "star.png", class:"star-icon" %>
+            <span class='star-count'>0</span>
           </div>
         </div>
-        <% end %>
-      </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <% end %> 
+      </div>
+    <% end %>
+  </li>
+<% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
