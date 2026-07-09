@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-@user = FactoryBot.create(:user)
-@item = FactoryBot.build(:item, user: @user)
-end
-
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item, user: @user)
+  end
 
   describe '商品出品' do
     context '出品できるとき' do
