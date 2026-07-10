@@ -44,6 +44,10 @@ ja:
       greater_than_or_equal_to: "は%{count}以上で入力してください"
       less_than_or_equal_to: "は%{count}以下で入力してください"
 
+  devise:
+    failure:
+      invalid: "メールアドレスまたはパスワードが正しくありません。"
+
   date:
     order:
       - :year
