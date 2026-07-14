@@ -2,14 +2,18 @@ class OrderAddress
   include ActiveModel::Model
 
   attr_accessor :postal_code,
-                :prefecture_id,
-                :city,
-                :address,
-                :building,
-                :phone_number,
-                :user_id,
-                :item_id,
-                :token
+              :prefecture_id,
+              :city,
+              :address,
+              :building,
+              :phone_number,
+              :user_id,
+              :item_id,
+              :token,
+              :card_number,
+              :card_exp_month,
+              :card_exp_year,
+              :card_cvc
 
   validates :postal_code, presence: true,
                           format: { with: /\A\d{3}-\d{4}\z/, message: 'は不正な値です' }
@@ -22,7 +26,7 @@ class OrderAddress
   validates :phone_number, presence: true,
                            format: { with: /\A\d{10,11}\z/, message: 'は不正な値です' }
 
-  validates :token, presence: true
+  # validates :token, presence: true
 
   def save
     order = Order.create!(

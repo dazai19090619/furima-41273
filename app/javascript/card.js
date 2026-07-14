@@ -1,5 +1,5 @@
 const pay = () => {
-  const form = document.querySelector("form");
+  const form = document.getElementById("charge-form");
   if (!form) return;
 
   form.addEventListener("submit", (e) => {

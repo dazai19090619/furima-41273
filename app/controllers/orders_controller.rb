@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
 
-    # 購入制限
     if @item.user_id == current_user.id || @item.order.present?
       redirect_to root_path
     end
@@ -13,6 +12,11 @@ class OrdersController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
+
+    if @item.user_id == current_user.id || @item.order.present?
+      return redirect_to root_path
+    end
+
     @order_address = OrderAddress.new(order_params)
 
     if @order_address.valid?
@@ -32,11 +36,15 @@ class OrdersController < ApplicationController
       :city,
       :address,
       :building,
-      :phone_number
+      :phone_number,
+      :token,
+      :card_number,
+      :card_exp_month,
+      :card_exp_year,
+      :card_cvc
     ).merge(
       user_id: current_user.id,
-      item_id: params[:item_id],
-      token: params[:token]
+      item_id: params[:item_id]
     )
   end
 end
