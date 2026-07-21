@@ -1,22 +1,13 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item
+  before_action :move_to_index
 
   def index
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
-
-    if @item.user_id == current_user.id || @item.order.present?
-      redirect_to root_path
-    end
   end
 
   def create
-    @item = Item.find(params[:item_id])
-
-    if @item.user_id == current_user.id || @item.order.present?
-      return redirect_to root_path
-    end
-
     @order_address = OrderAddress.new(order_params)
 
     if @order_address.valid?
@@ -36,15 +27,21 @@ class OrdersController < ApplicationController
       :city,
       :address,
       :building,
-      :phone_number,
-      :token,
-      :card_number,
-      :card_exp_month,
-      :card_exp_year,
-      :card_cvc
+      :phone_number
     ).merge(
       user_id: current_user.id,
-      item_id: params[:item_id]
+      item_id: params[:item_id],
+      token: params[:token]
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_index
+    if @item.user_id == current_user.id || @item.order.present?
+      redirect_to root_path
+    end
   end
 end
