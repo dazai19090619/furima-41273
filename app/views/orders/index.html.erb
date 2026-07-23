@@ -5,7 +5,17 @@
     <h1 class='transaction-title-text'>
       購入内容の確認
     </h1>
-    <%# 購入内容の表示 %>
+    <% if @order_address.errors.any? %>
+  <div class="error-messages">
+    <ul>
+      <% @order_address.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
     <div class='buy-item-info'>
   <%= image_tag @item.image, class: 'buy-item-img' %>
   <div class='buy-item-right-content'>

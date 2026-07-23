@@ -11,7 +11,6 @@ class OrderAddress
                 :item_id,
                 :token
 
-  # バリデーション
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'は不正な値です' }
     validates :city
@@ -25,20 +24,21 @@ class OrderAddress
   validates :prefecture_id, numericality: { other_than: 1, message: 'を入力してください' }
 
   def save
-    order = Order.create!(
-      user_id: user_id,
-      item_id: item_id
-    )
+    ActiveRecord::Base.transaction do
+      order = Order.create!(
+        user_id: user_id,
+        item_id: item_id
+      )
 
-    Address.create!(
-      postal_code: postal_code,
-      prefecture_id: prefecture_id,
-      city: city,
-      address: address,
-      building: building,
-      phone_number: phone_number,
-      order_id: order.id
-    )
+      Address.create!(
+        postal_code: postal_code,
+        prefecture_id: prefecture_id,
+        city: city,
+        address: address,
+        building: building,
+        phone_number: phone_number,
+        order_id: order.id
+      )
+    end
   end
 end
-

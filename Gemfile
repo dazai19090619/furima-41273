@@ -75,3 +75,4 @@ gem 'factory_bot_rails', group: [:development, :test]
 gem 'rubocop', require: false, group: :development
 gem 'devise'
 gem 'gon'
+gem 'payjp'
