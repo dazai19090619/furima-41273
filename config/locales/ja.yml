@@ -31,6 +31,13 @@ ja:
             user:
               required: "を入力してください"
 
+        order:
+          attributes:
+            user:
+              required: "を入力してください"
+            item:
+              required: "を入力してください"
+
   errors:
     format: "%{attribute}%{message}"
 

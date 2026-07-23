@@ -47,10 +47,10 @@ class ItemsController < ApplicationController
   end
 
   def correct_user
-  unless @item.user_id == current_user.id && @item.order.nil?
+    return if @item.user_id == current_user.id && @item.order.nil?
+
     redirect_to root_path
   end
-end
 
   def item_params
     params.require(:item).permit(

@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-  @user = FactoryBot.create(:user)
-  @item = FactoryBot.build(:item, user: @user)
-end
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item, user: @user)
+  end
 
   describe '商品出品' do
     context '出品できるとき' do
@@ -136,22 +136,22 @@ end
       end
     end
   end
- describe '売却状態' do
-  context '商品が購入された場合' do
-    it 'orderが紐付いている' do
-      item = FactoryBot.create(:item, user: @user)
+  describe '売却状態' do
+    context '商品が購入された場合' do
+      it 'orderが紐付いている' do
+        item = FactoryBot.create(:item, user: @user)
 
-      order = Order.new(
-        user: @user,
-        item: item
-      )
+        order = Order.new(
+          user: @user,
+          item: item
+        )
 
-      order.valid?
+        order.valid?
 
-      puts order.errors.full_messages
+        puts order.errors.full_messages
 
-      expect(order).to be_valid
+        expect(order).to be_valid
+      end
     end
   end
-end
 end

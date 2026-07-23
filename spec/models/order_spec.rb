@@ -6,17 +6,24 @@ RSpec.describe Order, type: :model do
   end
 
   context '内容に問題ない場合' do
-    it "priceがあれば保存ができること" do
+    it 'userとitemがあれば保存できること' do
       expect(@order).to be_valid
     end
   end
 
   context '内容に問題がある場合' do
-    it "priceが空では保存ができないこと" do
-      @order.price = nil
-      @order.valid?
+    it 'userがないと保存できないこと' do
+      @order.user = nil
+      expect(@order).to be_invalid
 
-      expect(@order.errors.full_messages).to include("Price can't be blank")
+      expect(@order.errors.full_messages).to include('Userを入力してください')
+    end
+
+    it 'itemがないと保存できないこと' do
+      @order.item = nil
+      expect(@order).to be_invalid
+
+      expect(@order.errors.full_messages).to include('Itemを入力してください')
     end
   end
 end

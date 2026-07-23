@@ -3,48 +3,47 @@ class OrdersController < ApplicationController
   before_action :set_item
 
   def index
-  if @item.user_id == current_user.id
-    redirect_to root_path
-    return
-  end
+    if @item.user_id == current_user.id
+      redirect_to root_path
+      return
+    end
 
-  if @item.order.present?
-    redirect_to root_path
-    return
-  end
+    if @item.order.present?
+      redirect_to root_path
+      return
+    end
 
-  gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-  @order_address = OrderAddress.new
-end
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+    @order_address = OrderAddress.new
+  end
 
   def create
     @order_address = OrderAddress.new(order_params)
 
     if @order_address.valid?
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
 
       begin
         Payjp::Charge.create(
           amount: @item.price,
           card: params[:token],
-          currency: "jpy"
+          currency: 'jpy'
         )
 
         if @order_address.save
           redirect_to root_path
         else
-          gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+          gon.public_key = ENV['PAYJP_PUBLIC_KEY']
           render :index, status: :unprocessable_entity
         end
-
       rescue Payjp::InvalidRequestError
-        gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-        flash.now[:alert] = "決済に失敗しました"
+        gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+        flash.now[:alert] = '決済に失敗しました'
         render :index, status: :unprocessable_entity
       end
 
     else
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       render :index, status: :unprocessable_entity
     end
   end
