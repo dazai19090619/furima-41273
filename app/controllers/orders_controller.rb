@@ -1,18 +1,38 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
-  before_action :move_to_index
 
   def index
-    @order_address = OrderAddress.new
-  end
+   gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+
+   @order_address = OrderAddress.new
+
+   if @item.user_id == current_user.id || @item.order.present?
+    redirect_to root_path
+   end
+ end
 
   def create
     @order_address = OrderAddress.new(order_params)
 
     if @order_address.valid?
-      @order_address.save
-      redirect_to root_path
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+
+      begin
+        Payjp::Charge.create(
+          amount: @item.price,
+          card: order_params[:token],
+          currency: "jpy"
+        )
+
+        @order_address.save
+        redirect_to root_path
+
+      rescue Payjp::Error
+        flash.now[:alert] = "決済に失敗しました"
+        render :index, status: :unprocessable_entity
+      end
+
     else
       render :index, status: :unprocessable_entity
     end
@@ -37,11 +57,5 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
-  end
-
-  def move_to_index
-    if @item.user_id == current_user.id || @item.order.present?
-      redirect_to root_path
-    end
   end
 end

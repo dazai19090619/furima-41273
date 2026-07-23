@@ -37,7 +37,7 @@
           <label class="form-text">カード情報</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :card_number, class:"input-default", placeholder:"カード番号" %>
+        <div id="number-form" class="input-default"></div>
         <div class='available-card'>
           <%= image_tag 'card-visa.gif', class: 'card-logo'%>
           <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
@@ -50,17 +50,14 @@
           <label class="form-text">有効期限</label>
           <span class="indispensable">必須</span>
         </div>
-        <div class='input-expiration-date-wrap'>
-          <%= f.text_field :card_exp_month, class:"input-default", placeholder:"月" %>
-          <%= f.text_field :card_exp_year, class:"input-default", placeholder:"年" %>
-        </div>
+          <div id="expiry-form" class="input-default"></div>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">セキュリティコード</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :card_cvc, class:"input-default", placeholder:"CVC" %>
+        <div id="cvc-form" class="input-default"></div>
       </div>
     </div>
     <%# /カード情報の入力 %>
@@ -116,9 +113,9 @@
     <%# /配送先の入力 %>
 
 
-    <div class='buy-btn'>
-      <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
-    </div>
+   <div class='buy-btn'>
+  <%= f.submit "購入", class:"buy-red-btn", id:"button" %>
+</div>
     <% end %>
   </div>
 </div>
