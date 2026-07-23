@@ -136,4 +136,22 @@ RSpec.describe Item, type: :model do
       end
     end
   end
+  describe '売却状態' do
+    context '商品が購入された場合' do
+      it 'orderが紐付いている' do
+        item = FactoryBot.create(:item, user: @user)
+
+        order = Order.new(
+          user: @user,
+          item: item
+        )
+
+        order.valid?
+
+        puts order.errors.full_messages
+
+        expect(order).to be_valid
+      end
+    end
+  end
 end

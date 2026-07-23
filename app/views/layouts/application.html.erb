@@ -7,14 +7,17 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= Gon::Base.render_data %>
     <%= javascript_importmap_tags %>
+
+    <script src="https://js.pay.jp/v2/pay.js"></script>
+
   </head>
 
   <body>
 
     <% if controller_name == "items" && action_name == "index" %>
-    <%= render "shared/header" %>
-    <% else %>
+      <%= render "shared/header" %>
     <% end %>
 
     <%= yield %>

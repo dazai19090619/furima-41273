@@ -131,36 +131,33 @@
 
           <li class='list'>
             <%= link_to item_path(item) do %>
-              <div class='item-img-content'>
+                      <div class='item-img-content'>
 
                 <% if item.image.attached? %>
                   <%= image_tag item.image, class: "item-img" %>
                 <% end %>
 
-                <%# 売れている場合のみ表示（未実装ならこのままコメントでOK） %>
-                <%# if item.order.present? %>
-                <%#   <div class='sold-out'> %>
-                <%#     <span>Sold Out!!</span> %>
-                <%#   </div> %>
-                <%# end %>
-
-                <% if false %>
+                <% if item.order.present? %>
                   <div class='sold-out'>
                     <span>Sold Out!!</span>
                   </div>
                 <% end %>
+
               </div>
 
               <div class='item-info'>
                 <h3 class='item-name'>
                   <%= item.name %>
                 </h3>
+
                 <div class='item-price'>
                   <span><%= item.price %>円<br><%= item.shipping_fee.name %></span>
+
                   <div class='star-btn'>
                     <%= image_tag "star.png", class:"star-icon" %>
                     <span class='star-count'>0</span>
                   </div>
+
                 </div>
               </div>
             <% end %>

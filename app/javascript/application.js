@@ -3,4 +3,5 @@
 import "@hotwired/turbo-rails"
 import "@hotwired/stimulus"
 import "controllers"
-import "./item_price"
+import "item_price"
+import "card"
