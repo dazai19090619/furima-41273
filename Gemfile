@@ -77,3 +77,7 @@ gem 'rubocop', require: false, group: :development
 gem 'devise'
 gem 'gon'
 gem "faker" 
+gem 'payjp'
+group :production do
+  gem 'pg'
+end
