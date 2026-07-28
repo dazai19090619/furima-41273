@@ -17,40 +17,42 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new
   end
 
-  def create
+ def create
   @order_address = OrderAddress.new(order_params)
-  token = order_params[:token]
 
-  if token.blank?
+  # バリデーションを実行してエラーを追加
+  @order_address.valid?
+
+  # カード情報チェック
+  if order_params[:token].blank?
     @order_address.errors.add(:base, "カード情報を入力してください")
-    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    return render :index, status: :unprocessable_entity
   end
 
-  if @order_address.valid?
+  if @order_address.errors.empty?
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
 
     begin
-  Payjp::Charge.create(
-    amount: @item.price,
-    card: token,
-    currency: 'jpy'
-  )
+      Payjp::Charge.create(
+        amount: @item.price,
+        card: order_params[:token],
+        currency: 'jpy'
+      )
 
-  @order_address.save
-  redirect_to root_path
+      @order_address.save
+      redirect_to root_path
 
-rescue Payjp::CardError
-  gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-  @order_address.errors.add(:base, 'カード情報が正しくありません')
-  render :index, status: :unprocessable_entity
-end
-
-    else
+    rescue Payjp::CardError
+      @order_address.errors.add(:base, "カード情報が正しくありません")
       gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       render :index, status: :unprocessable_entity
     end
+
+  else
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+    render :index, status: :unprocessable_entity
   end
+end
+
 
   private
 

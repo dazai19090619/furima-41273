@@ -37,33 +37,37 @@
     </div>
 
     <table class="detail-table">
-      <tbody>
-        <tr>
-          <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.user&.nickname || @item.user&.id %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @item.category&.name || "未設定" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= @item.status&.name || "未設定" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @item.shipping_fee&.name || "未設定" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= @item.prefecture&.name || "未設定" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @item.delivery_time&.name || "未設定" %></td>
-        </tr>
-      </tbody>
-    </table>
+  <tbody>
+    <tr>
+      <th class="detail-item">出品者</th>
+      <td class="detail-value"><%= @item.user&.nickname || @item.user&.id %></td>
+    </tr>
+    <tr>
+      <th class="detail-item">カテゴリー</th>
+      <td class="detail-value"><%= @item.category&.name || "未設定" %></td>
+    </tr>
+    <tr>
+      <th class="detail-item">商品の状態</th>
+      <td class="detail-value"><%= @item.status&.name || "未設定" %></td>
+    </tr>
+    <tr>
+      <th class="detail-item">配送料の負担</th>
+      <td class="detail-value"><%= @item.shipping_fee&.name || "未設定" %></td>
+    </tr>
+    <tr>
+      <th class="detail-item">価格</th>
+      <td class="detail-value"><%= @item.price %>円</td>
+    </tr>
+    <tr>
+      <th class="detail-item">発送元の地域</th>
+      <td class="detail-value"><%= @item.prefecture&.name || "未設定" %></td>
+    </tr>
+    <tr>
+      <th class="detail-item">発送日の目安</th>
+      <td class="detail-value"><%= @item.delivery_time&.name || "未設定" %></td>
+    </tr>
+  </tbody>
+</table>
 
     <div class="option">
       <div class="favorite-btn">
