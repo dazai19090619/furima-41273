@@ -19,20 +19,20 @@ const pay = () => {
     e.preventDefault();
 
     payjp.createToken(numberElement).then((response) => {
-      if (response.error) {
-        alert("カード情報が正しくありません");
-      } else {
-        const token = response.id;
+     if (response.error) {
+  form.submit();
+} else {
+  const token = response.id;
 
-        const tokenInput = document.createElement("input");
-        tokenInput.type = "hidden";
-        tokenInput.name = "token";
-        tokenInput.value = token;
+  const tokenInput = document.createElement("input");
+  tokenInput.type = "hidden";
+  tokenInput.name = "token";
+  tokenInput.value = token;
 
-        form.appendChild(tokenInput);
+  form.appendChild(tokenInput);
 
-        form.submit();
-      }
+  form.submit();
+}
     });
   });
 };

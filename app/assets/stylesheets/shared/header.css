@@ -57,6 +57,9 @@
 .lists-left {
   display: flex;
   min-width: 200px;
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .category-list {
